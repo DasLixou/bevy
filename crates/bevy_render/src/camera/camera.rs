@@ -312,9 +312,6 @@ pub enum RenderTarget {
     Window(WindowId),
     /// Image to which the camera's view is rendered.
     Image(Handle<Image>),
-    #[cfg(feature = "bevy_vfx")]
-    /// VirtualEffct which the camera's view is passed trough.
-    VirtualEffect(Handle<bevy_vfx::VirtualEffect>),
 }
 
 impl Default for RenderTarget {
@@ -336,9 +333,6 @@ impl RenderTarget {
             RenderTarget::Image(image_handle) => {
                 images.get(image_handle).map(|image| &image.texture_view)
             }
-            RenderTarget::VirtualEffect(effect_handle) => {
-                todo!()
-            }
         }
     }
 
@@ -354,9 +348,6 @@ impl RenderTarget {
                 .and_then(|window| window.swap_chain_texture_format),
             RenderTarget::Image(image_handle) => {
                 images.get(image_handle).map(|image| image.texture_format)
-            }
-            RenderTarget::VirtualEffect(effect_handle) => {
-                todo!()
             }
         }
     }
@@ -382,9 +373,6 @@ impl RenderTarget {
                     scale_factor: 1.0,
                 }
             }
-            RenderTarget::VirtualEffect(effect_handle) => {
-                todo!()
-            }
         })
     }
     // Check if this render target is contained in the given changed windows or images.
@@ -396,9 +384,6 @@ impl RenderTarget {
         match self {
             RenderTarget::Window(window_id) => changed_window_ids.contains(window_id),
             RenderTarget::Image(image_handle) => changed_image_handles.contains(&image_handle),
-            RenderTarget::VirtualEffect(effect_handle) => {
-                todo!()
-            }
         }
     }
 }
