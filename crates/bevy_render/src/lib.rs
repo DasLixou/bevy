@@ -17,6 +17,7 @@ pub mod renderer;
 pub mod settings;
 mod spatial_bundle;
 pub mod texture;
+pub mod vfx;
 pub mod view;
 
 use bevy_core::FrameCount;
