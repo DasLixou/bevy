@@ -336,6 +336,7 @@ impl RenderTarget {
             RenderTarget::Image(image_handle) => {
                 images.get(image_handle).map(|image| &image.texture_view)
             }
+            #[cfg(feature = "bevy_vfx")]
             RenderTarget::VirtualEffect(effect_handle) => {
                 todo!()
             }
@@ -355,6 +356,7 @@ impl RenderTarget {
             RenderTarget::Image(image_handle) => {
                 images.get(image_handle).map(|image| image.texture_format)
             }
+            #[cfg(feature = "bevy_vfx")]
             RenderTarget::VirtualEffect(effect_handle) => {
                 todo!()
             }
@@ -382,6 +384,7 @@ impl RenderTarget {
                     scale_factor: 1.0,
                 }
             }
+            #[cfg(feature = "bevy_vfx")]
             RenderTarget::VirtualEffect(effect_handle) => {
                 todo!()
             }
@@ -396,6 +399,7 @@ impl RenderTarget {
         match self {
             RenderTarget::Window(window_id) => changed_window_ids.contains(window_id),
             RenderTarget::Image(image_handle) => changed_image_handles.contains(&image_handle),
+            #[cfg(feature = "bevy_vfx")]
             RenderTarget::VirtualEffect(effect_handle) => {
                 todo!()
             }
