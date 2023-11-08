@@ -1800,4 +1800,16 @@ mod tests {
         );
         schedule.run(&mut world);
     }
+
+    #[test]
+    fn depend_on_unconfigured_set() {
+        #[derive(SystemSet, Debug, Clone, PartialEq, Eq, Hash)]
+        struct Set;
+
+        let mut world = World::new();
+        let mut schedule = Schedule::default();
+
+        schedule.add_systems((|| {}).in_set(Set));
+        schedule.run(&mut world);
+    }
 }
